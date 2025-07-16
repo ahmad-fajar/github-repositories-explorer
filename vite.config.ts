@@ -1,16 +1,29 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
+import { resolve } from 'path'
+import { fileURLToPath, URL } from 'node:url'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    babel: {
+      plugins: [
+        ['babel-plugin-styled-components', {
+          displayName: true,
+          fileName: false,
+        }],
+      ],
+    },
+  })],
   server: {
     port: 3000,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@/components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@/constants': fileURLToPath(new URL('./src/constants', import.meta.url)),
+      '@/types': fileURLToPath(new URL('./src/types', import.meta.url)),
     },
   },
 })
