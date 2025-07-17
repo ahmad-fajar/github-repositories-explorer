@@ -4,6 +4,7 @@ import useGetRepositories from '@/hooks/useGetRepositories';
 import useGetUsers from '@/hooks/useGetUsers';
 import { ToastProvider } from '@/context/ToastContext';
 
+import ErrorBoundary from '@/components/ErrorBoundary';
 import SearchBar from '@/components/SearchBar';
 import UserCard from '@/components/UserCard';
 import {
@@ -65,9 +66,11 @@ function App() {
 }
 
 const Wrapped = () => (
-  <ToastProvider>
-    <App />
-  </ToastProvider>
+  <ErrorBoundary>
+    <ToastProvider>
+      <App />
+    </ToastProvider>
+  </ErrorBoundary>
 );
 
 export default Wrapped;
