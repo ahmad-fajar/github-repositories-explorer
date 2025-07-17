@@ -4,6 +4,7 @@ import { Star } from 'lucide-react';
 import {
   RepoDesc,
   RepoHeader,
+  RepoName,
   RepositoryContainer,
   StarCount,
 } from './styles';
@@ -11,16 +12,19 @@ import {
 export interface RepositoryCardProps {
   repositoryDescription: string;
   repositoryName: string;
+  repositoryUrl: string;
   star: number;
 }
 
 const RepositoryCard: FC<RepositoryCardProps> = props => {
-  const { repositoryDescription, repositoryName, star } = props;
+  const { repositoryDescription, repositoryName, repositoryUrl, star } = props;
 
   return (
     <RepositoryContainer>
       <RepoHeader>
-        <p>{repositoryName}</p>
+        <RepoName href={repositoryUrl} target="_blank" rel="noopener noreferrer">
+          {repositoryName}
+        </RepoName>
         <StarCount>
           {star}
           <Star fill="black" size={14} />

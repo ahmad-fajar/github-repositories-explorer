@@ -16,9 +16,11 @@ import { parseReponses } from '@/helper/app';
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const { data: users = [] } = useGetUsers(searchQuery);
+  const { data: users = [], isLoading: isLoadingUsers } = useGetUsers(searchQuery);
 
   const repositories = useGetRepositories(users.map(user => user.login));
+  const isLoadingRepositories = repositories.some(repository => repository.isLoading);
+  const isLoading = isLoadingUsers || isLoadingRepositories;
 
   const searchHandler = (sQuery: string): void => {
     setSearchQuery(sQuery);
@@ -42,6 +44,7 @@ function App() {
         <SearchBar
           onClickSearch={searchHandler}
           placeholder="Enter username"
+          isLoading={isLoading}
         />
 
         {searchQuery && (

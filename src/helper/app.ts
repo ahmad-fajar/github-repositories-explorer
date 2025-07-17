@@ -17,8 +17,9 @@ export const parseReponses = (
     temp.username = user.login;
     temp.id = user.id;
     temp.repositories = repositoriesResp?.[i]?.data?.map(repository => ({
-      repositoryName: repository.name,
       repositoryDescription: repository.description,
+      repositoryName: repository.name,
+      repositoryUrl: repository.html_url,
       star: repository.stargazers_count,
     })) || [];
     result.push(temp);

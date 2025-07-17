@@ -24,9 +24,7 @@ const UserCard: FC<UserCardProps> = props => {
   const repositoryCards = repositories.map(repository => (
     <RepositoryCard
       key={repository.repositoryName}
-      repositoryName={repository.repositoryName}
-      repositoryDescription={repository.repositoryDescription}
-      star={repository.star}
+      {...repository}
     />
   ));
 

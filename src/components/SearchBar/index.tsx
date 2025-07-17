@@ -10,35 +10,43 @@ import {
 interface SearchBarProps {
   onClickSearch: (searchQuery: string) => void;
   placeholder?: string;
+  isLoading?: boolean;
 }
 
 const SearchBar: FC<SearchBarProps> = props => {
   const {
     onClickSearch,
     placeholder,
+    isLoading,
   } = props;
 
   const [query, setQuery] = useState<string>('');
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      onClickSearch(query);
+      searchHandler();
     }
+  };
+
+  const searchHandler = () => {
+    if (isLoading) return;
+    onClickSearch(query);
   };
 
   return (
     <SearchContainer>
       <SearchInput
         type="text"
+        disabled={isLoading}
         value={query}
         onChange={(e) => setQuery(e.target.value.trim())}
         onKeyDown={handleKeyPress}
         placeholder={placeholder}
       />
 
-      <SearchButton onClick={() => onClickSearch(query)}>
+      <SearchButton onClick={searchHandler} disabled={isLoading}>
         <Search size={16} />
-        Search
+        {isLoading ? 'Searching...' : 'Search'}
       </SearchButton>
     </SearchContainer>
   );

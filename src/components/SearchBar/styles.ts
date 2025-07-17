@@ -6,13 +6,13 @@ export const SearchContainer = styled.div`
   gap: 16px;
 `;
 
-export const SearchInput = styled.input`
+export const SearchInput = styled.input<{ disabled?: boolean }>`
   padding: 12px 16px;
   border: 1px solid #e1e5e9;
   border-radius: 6px;
   font-size: 14px;
-  background: #f6f8fa;
-  color: #24292f;
+  background: ${({ disabled }) => disabled ? '#c5c5c5' : '#f6f8fa'};
+  color: ${({ disabled }) => disabled ? '#80ade1' : '#24292f'};
   
   &::placeholder {
     color: #656d76;
@@ -25,15 +25,15 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled.button<{ disabled?: boolean }>`
   padding: 12px 24px;
-  background: #0969da;
+  background: ${({ disabled }) => disabled ? '#80ade1' : '#0969da'};
   color: white;
   border: none;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
-  cursor: pointer;
+  cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
   display: flex;
   align-items: center;
   justify-content: center;

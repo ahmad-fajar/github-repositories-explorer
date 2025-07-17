@@ -17,6 +17,12 @@ export const RepoHeader = styled.div`
   margin-bottom: 8px;
 `;
 
+export const RepoName = styled.a`
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+`;
+
 export const StarCount = styled.div`
   display: flex;
   align-items: center;
