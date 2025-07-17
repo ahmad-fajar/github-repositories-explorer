@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from 'react';
 
 import useGetRepositories from '@/hooks/useGetRepositories';
 import useGetUsers from '@/hooks/useGetUsers';
+import { ToastProvider } from '@/context/ToastContext';
 
 import SearchBar from '@/components/SearchBar';
 import UserCard from '@/components/UserCard';
@@ -63,4 +64,10 @@ function App() {
   );
 }
 
-export default App;
+const Wrapped = () => (
+  <ToastProvider>
+    <App />
+  </ToastProvider>
+);
+
+export default Wrapped;
