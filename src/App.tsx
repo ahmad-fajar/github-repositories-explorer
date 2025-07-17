@@ -1,5 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 
+import useGetRepositories from '@/hooks/useGetRepositories';
+import useGetUsers from '@/hooks/useGetUsers';
+
 import SearchBar from '@/components/SearchBar';
 import UserCard from '@/components/UserCard';
 import {
@@ -8,20 +11,25 @@ import {
   SearchQuery
 } from './style';
 
-import { dummyData } from '@/mock';
+import { parseReponses } from '@/helper/app';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const searchHandler = () => {
-    console.log('searchHandler', searchQuery);
+  const { data: users = [] } = useGetUsers(searchQuery);
+
+  const repositories = useGetRepositories(users.map(user => user.login));
+
+  const searchHandler = (sQuery: string): void => {
+    setSearchQuery(sQuery);
   };
 
-  const dummy = searchQuery ? dummyData : [];
-  const userCards: ReactNode[] = dummy.map(card => {
+  const cardData = parseReponses(users, repositories);
+  const userCards: ReactNode[] = cardData.map(card => {
     return (
       <UserCard
         key={card.id}
+        id={card.id}
         username={card.username}
         repositories={card.repositories}
       />
@@ -32,8 +40,6 @@ function App() {
     <AppContainer>
       <Frame>
         <SearchBar
-          username={searchQuery}
-          onChange={setSearchQuery}
           onClickSearch={searchHandler}
           placeholder="Enter username"
         />

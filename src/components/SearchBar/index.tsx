@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Search } from 'lucide-react';
 import {
@@ -8,23 +8,21 @@ import {
 } from './styles';
 
 interface SearchBarProps {
-  username: string;
-  onChange: (username: string) => void;
-  onClickSearch: () => void;
+  onClickSearch: (searchQuery: string) => void;
   placeholder?: string;
 }
 
 const SearchBar: FC<SearchBarProps> = props => {
   const {
-    onChange,
     onClickSearch,
     placeholder,
-    username,
   } = props;
+
+  const [query, setQuery] = useState<string>('');
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      onClickSearch();
+      onClickSearch(query);
     }
   };
 
@@ -32,13 +30,13 @@ const SearchBar: FC<SearchBarProps> = props => {
     <SearchContainer>
       <SearchInput
         type="text"
-        value={username}
-        onChange={(e) => onChange(e.target.value.trim())}
+        value={query}
+        onChange={(e) => setQuery(e.target.value.trim())}
         onKeyDown={handleKeyPress}
         placeholder={placeholder}
       />
 
-      <SearchButton onClick={onClickSearch}>
+      <SearchButton onClick={() => onClickSearch(query)}>
         <Search size={16} />
         Search
       </SearchButton>

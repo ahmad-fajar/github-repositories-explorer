@@ -21,6 +21,8 @@
       "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
       "@/constants/*": ["src/constants/*"],
+      "@/helper/*": ["src/helper/*"],
+      "@/hooks/*": ["src/hooks/*"],
       "@/types/*": ["src/types/*"]
     },
     "allowSyntheticDefaultImports": true,
@@ -31,7 +33,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.d.ts"
-  ],
+, "src/helper"  ],
   "exclude": [
     "node_modules",
     "dist"

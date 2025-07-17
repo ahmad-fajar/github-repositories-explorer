@@ -9,6 +9,7 @@ import {
 } from './styles';
 
 export interface UserCardProps {
+  id: number;
   username: string;
   repositories: RepositoryCardProps[];
 }
@@ -33,7 +34,7 @@ const UserCard: FC<UserCardProps> = props => {
     <UserCardContainer>
       <UserCardHeader>
         <p>{username}</p>
-        <Chevron onClick={() => setIsOpen(!isOpen)} />
+        <Chevron onClick={() => setIsOpen(!isOpen)} style={{ cursor: 'pointer' }} />
       </UserCardHeader>
 
       {isOpen && (
