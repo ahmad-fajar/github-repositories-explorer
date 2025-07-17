@@ -4,7 +4,6 @@ import SearchBar from '@/components/SearchBar';
 import UserCard from '@/components/UserCard';
 import {
   AppContainer,
-  Layout,
   Frame,
   SearchQuery
 } from './style';
@@ -31,28 +30,26 @@ function App() {
 
   return (
     <AppContainer>
-      <Layout>
-        <Frame>
-          <SearchBar
-            username={searchQuery}
-            onChange={setSearchQuery}
-            onClickSearch={searchHandler}
-            placeholder="Enter username"
-          />
-  
-          {searchQuery && (
-            <SearchQuery>
-              Search query: "{searchQuery}"
-            </SearchQuery>
-          )}
+      <Frame>
+        <SearchBar
+          username={searchQuery}
+          onChange={setSearchQuery}
+          onClickSearch={searchHandler}
+          placeholder="Enter username"
+        />
 
-          {!!userCards.length && (
-            <div>
-              {userCards}
-            </div>
-          )}
-        </Frame>
-      </Layout>
+        {searchQuery && (
+          <SearchQuery>
+            Search query: "{searchQuery}"
+          </SearchQuery>
+        )}
+
+        {!!userCards.length && (
+          <div>
+            {userCards}
+          </div>
+        )}
+      </Frame>
     </AppContainer>
   );
 }

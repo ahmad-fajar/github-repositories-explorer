@@ -30,6 +30,16 @@ export const dummyData: Dummy[] = [
         repositoryDescription: 'dummydesc2',
         star: 20,
       },
+      {
+        repositoryName: 'dummyrepo22',
+        repositoryDescription: 'dummydesc2',
+        star: 20,
+      },
+      {
+        repositoryName: 'dummyrepo23',
+        repositoryDescription: 'dummydesc2',
+        star: 20,
+      },
     ],
   },
   {
@@ -61,6 +71,11 @@ export const dummyData: Dummy[] = [
         repositoryName: 'dummyrepo4',
         repositoryDescription: 'dummydesc4',
         star: 40,
+      },
+      {
+        repositoryName: 'dummyrepo54',
+        repositoryDescription: 'dummydesc5',
+        star: 50,
       },
     ],
   },
