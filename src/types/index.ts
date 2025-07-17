@@ -17,3 +17,9 @@ export type Repository = {
   name: string;
   stargazers_count: number;
 };
+
+export type GitHubError = {
+  documentation_url: string;
+  message: string;
+  status: number;
+};

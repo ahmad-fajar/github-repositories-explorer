@@ -40,7 +40,7 @@ export const SearchButton = styled.button<{ disabled?: boolean }>`
   gap: 8px;
   transition: background-color 0.2s;
   
-  &:hover {
+  &:hover:not(:disabled) {
     background: #0860ca;
   }
   

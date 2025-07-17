@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, KeyboardEvent, useState } from 'react';
 
 import { Search } from 'lucide-react';
 import {
@@ -22,9 +22,12 @@ const SearchBar: FC<SearchBarProps> = props => {
 
   const [query, setQuery] = useState<string>('');
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       searchHandler();
+    }
+    if (e.key === 'Escape') {
+      e.currentTarget.blur();
     }
   };
 
@@ -44,7 +47,7 @@ const SearchBar: FC<SearchBarProps> = props => {
         placeholder={placeholder}
       />
 
-      <SearchButton onClick={searchHandler} disabled={isLoading}>
+      <SearchButton onClick={searchHandler} disabled={isLoading || !query.trim()}>
         <Search size={16} />
         {isLoading ? 'Searching...' : 'Search'}
       </SearchButton>

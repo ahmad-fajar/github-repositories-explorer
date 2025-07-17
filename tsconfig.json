@@ -23,7 +23,8 @@
       "@/constants/*": ["src/constants/*"],
       "@/helper/*": ["src/helper/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/types/*": ["src/types/*"]
+      "@/types/*": ["src/types/*"],
+      "@/utils/*": ["src/utils/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

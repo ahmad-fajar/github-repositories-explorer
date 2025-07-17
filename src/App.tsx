@@ -1,11 +1,12 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
+import { ToastProvider, useToast } from '@/context/ToastContext';
 import useGetRepositories from '@/hooks/useGetRepositories';
 import useGetUsers from '@/hooks/useGetUsers';
-import { ToastProvider } from '@/context/ToastContext';
 
 import ErrorBoundary from '@/components/ErrorBoundary';
 import SearchBar from '@/components/SearchBar';
+import { ToastType } from '@/components/Toast';
 import UserCard from '@/components/UserCard';
 import {
   AppContainer,
@@ -17,18 +18,25 @@ import { parseReponses } from '@/helper/app';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const { toast } = useToast();
 
-  const { data: users = [], isLoading: isLoadingUsers } = useGetUsers(searchQuery);
+  const {
+    data: users = [],
+    isLoading: isLoadingUsers,
+    error: errorUsers,
+  } = useGetUsers(searchQuery);
 
   const repositories = useGetRepositories(users.map(user => user.login));
-  const isLoadingRepositories = repositories.some(repository => repository.isLoading);
+  const isLoadingRepositories = repositories.some(
+    repository => repository.isLoading,
+  );
   const isLoading = isLoadingUsers || isLoadingRepositories;
 
   const searchHandler = (sQuery: string): void => {
     setSearchQuery(sQuery);
   };
 
-  const cardData = parseReponses(users, repositories);
+  const { result: cardData, repositoryError } = parseReponses(users, repositories);
   const userCards: ReactNode[] = cardData.map(card => {
     return (
       <UserCard
@@ -39,6 +47,13 @@ function App() {
       />
     );
   });
+
+  const errorMessage = repositoryError || errorUsers;
+  useEffect(() => {
+    if (errorMessage) {
+      toast({ message: errorMessage as string, type: ToastType.error });
+    }
+  }, [errorMessage]);
 
   return (
     <AppContainer>
