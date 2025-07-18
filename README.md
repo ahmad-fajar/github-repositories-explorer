@@ -30,4 +30,6 @@ A React application to search GitHub user and their repositories.
 
 ## Limitations
 - Display only top 5 users returned from GitHub.
-- Rate limit to make an API call to GitHub due to being unauthenticated. Unauthenticated users are limited to 60 requests per hour ([source](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#primary-rate-limit-for-unauthenticated-users)).
+- This app uses API GitHub without authentication. Hence subject to certain limitations.
+- Unauthenticated users are limited to 60 requests per hour ([source](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#primary-rate-limit-for-unauthenticated-users)).
+- This app use `/users/{username}/repos` endpoint to get repository list. According to [GitHub documentation](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-repositories-for-a-user), this endpoint will return only public repositories if called without authentication.
