@@ -20,7 +20,7 @@ const UpBtn = styled.div`
   position: absolute;
   border-radius: 50%;
   bottom: 12px;
-  right: 12px;
+  left: 12px;
   height: 42px;
   width: 42px;
   display: flex;

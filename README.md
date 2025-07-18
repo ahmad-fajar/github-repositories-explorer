@@ -26,7 +26,14 @@ A React application to search GitHub user and their repositories.
 - Clone repository.
 - Install dependencies `yarn` or `npm install`.
 - Start development server `yarn dev` or `npm run dev`.
-- App run in `localhost:3000`.
+- App run in `localhost:3000/github-repositories-explorer/`.
+
+## Deployment
+This app is deployed at GitHub pages. To deploy new changes, follow steps below:
+- Commit all new changes.
+- Run `yarn deploy`.
+- Visit [https://ahmad-fajar.github.io/github-repositories-explorer/](https://ahmad-fajar.github.io/github-repositories-explorer/).
+- There might be a delay before the changes reflected on GitHub page (cache). 
 
 ## Limitations
 - Display only top 5 users returned from GitHub.
