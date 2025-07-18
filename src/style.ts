@@ -29,5 +29,20 @@ export const Frame = styled.div`
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 600px;
+  max-width: 768px;
+  position: relative;
+  height: fit-content;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    height: 100vh;
+  }
+`;
+
+export const UserResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
 `;
